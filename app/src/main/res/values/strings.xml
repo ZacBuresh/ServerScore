@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Server_Score</string>
+    <string name="hello">Hello</string>
+    <string name="greet_user">Greet User!</string>
+</resources>
