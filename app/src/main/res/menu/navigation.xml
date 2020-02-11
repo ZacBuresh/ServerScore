@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_score"
+        android:icon="@drawable/ic_attach_money_black_24dp"
+        android:title="@string/score"/>
+
+    <item
+        android:id="@+id/nav_add"
+        android:icon="@drawable/ic_add_circle_outline_black_24dp"
+        android:title="@string/add_shift"/>
+
+    <item
+        android:id="@+id/nav_pred"
+        android:icon="@drawable/ic_access_alarms_black_24dp"
+        android:title="@string/predictions"/>
+
+</menu>

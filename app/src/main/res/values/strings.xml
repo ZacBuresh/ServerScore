@@ -2,4 +2,8 @@
     <string name="app_name">Server_Score</string>
     <string name="hello">Hello</string>
     <string name="greet_user">Greet User!</string>
+    <string name="predictions">Predictions</string>
+    <string name="add_shift">Add Shift</string>
+    <string name="score">Score</string>
+    <string name="server_score">Server Score</string>
 </resources>
