@@ -6,4 +6,7 @@
     <string name="add_shift">Add Shift</string>
     <string name="score">Score</string>
     <string name="server_score">Server Score</string>
+    <string name="welcome_to_server_score">Welcome to Server Score</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="start">Start</string>
 </resources>

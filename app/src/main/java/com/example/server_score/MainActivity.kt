@@ -1,22 +1,27 @@
 package com.example.server_score
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.server_score.score.ScoreActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var toolbar: Toolbar
+    private lateinit var username: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar = findViewById(R.id.toolbar_score)
-        setSupportActionBar(toolbar)
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
+        bt_start.setOnClickListener {
+            username = et_name.text.toString()
+            val intent = Intent(this, ScoreActivity::class.java)
+            intent.putExtra("USERNAME", username)
+            startActivity(intent)
+        }
+
     }
 
 }
