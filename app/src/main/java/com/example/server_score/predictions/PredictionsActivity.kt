@@ -30,13 +30,13 @@ class PredictionsActivity : AppCompatActivity() {
                     R.id.nav_score -> {
                         val intent = Intent(this, ScoreActivity::class.java)
                         intent.putExtra("USERNAME", username)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                     }
                     R.id.nav_add -> {
                         val intent = Intent(this, AddActivity::class.java)
                         intent.putExtra("USERNAME", username)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                     }
                     R.id.nav_pred -> {

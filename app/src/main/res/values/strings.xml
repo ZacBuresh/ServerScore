@@ -9,4 +9,10 @@
     <string name="welcome_to_server_score">Welcome to Server Score</string>
     <string name="enter_your_name">Enter Your Name</string>
     <string name="start">Start</string>
+    <string name="shift_report"><u>Shift Report</u>:</string>
+    <string name="total_tips">Total Tips:</string>
+    <string name="hours">Hours:</string>
+    <string name="guests"># Guests:</string>
+    <string name="avg_check_time">Avg Check Time:</string>
+    <string name="add">Add</string>
 </resources>

@@ -9,6 +9,12 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:editTextStyle">@style/App_EditTextStyle</item>
+    </style>
+
+    <style name="App_EditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:textColor">#808080</item>
+        <item name="android:background">@drawable/edit_text_background</item>
     </style>
 
 </resources>

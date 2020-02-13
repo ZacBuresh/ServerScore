@@ -30,7 +30,7 @@ class AddActivity : AppCompatActivity() {
                     R.id.nav_score -> {
                         val intent = Intent(this, ScoreActivity::class.java)
                         intent.putExtra("USERNAME", username)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                     }
                     R.id.nav_add -> {
@@ -39,7 +39,7 @@ class AddActivity : AppCompatActivity() {
                     R.id.nav_pred -> {
                         val intent = Intent(this, PredictionsActivity::class.java)
                         intent.putExtra("USERNAME", username)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                     }
                 }

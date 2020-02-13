@@ -5,15 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import com.example.server_score.MainActivity
 import com.example.server_score.R
 import com.example.server_score.add.AddActivity
 import com.example.server_score.predictions.PredictionsActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_add.navigationView
-import kotlinx.android.synthetic.main.activity_add.tv_score
-import kotlinx.android.synthetic.main.activity_score.*
 
 class ScoreActivity : AppCompatActivity() {
 
@@ -37,13 +32,13 @@ class ScoreActivity : AppCompatActivity() {
                     R.id.nav_add -> {
                         val intent = Intent(this, AddActivity::class.java)
                         intent.putExtra("USERNAME", username)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                     }
                     R.id.nav_pred -> {
                         val intent = Intent(this, PredictionsActivity::class.java)
                         intent.putExtra("USERNAME", username)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                     }
                 }

@@ -29,13 +29,165 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_score"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/tv_shift_report"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_score"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Add Activity"
-        android:textColor="@color/black"/>
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/shift_report"
+        android:textSize="21sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_tips"
+        android:text="@string/total_tips"
+        android:textSize="21sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_shift_report"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_total_tips"
+        app:layout_constraintTop_toBottomOf="@id/tv_shift_report"
+        app:layout_constraintStart_toEndOf="@id/tv_tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="15dp"
+        android:importantForAutofill="no"
+        android:inputType=""
+        android:textColor="@color/black"
+        android:background="@drawable/edit_text_background"
+        android:cursorVisible="false"/>
+
+    <TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/tv_hours"
+    android:text="@string/hours"
+    android:textSize="21sp"
+    android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/tv_tips"
+    android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_hours"
+        app:layout_constraintTop_toBottomOf="@id/tv_tips"
+        app:layout_constraintStart_toEndOf="@id/tv_tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="15dp"
+        android:importantForAutofill="no"
+        android:inputType=""
+        android:textColor="@color/black"
+        android:background="@drawable/edit_text_background"
+        android:cursorVisible="false"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_guests"
+        android:text="@string/guests"
+        android:textSize="21sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_hours"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_guests"
+        app:layout_constraintTop_toBottomOf="@id/tv_hours"
+        app:layout_constraintStart_toEndOf="@id/tv_tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="15dp"
+        android:importantForAutofill="no"
+        android:inputType=""
+        android:textColor="@color/black"
+        android:background="@drawable/edit_text_background"
+        android:cursorVisible="false"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_adds"
+        android:text="Add Ons"
+        android:textSize="21sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_guests"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_adds"
+        app:layout_constraintTop_toBottomOf="@id/tv_guests"
+        app:layout_constraintStart_toEndOf="@id/tv_tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="15dp"
+        android:importantForAutofill="no"
+        android:inputType=""
+        android:textColor="@color/black"
+        android:background="@drawable/edit_text_background"
+        android:cursorVisible="false"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time"
+        android:text="@string/avg_check_time"
+        android:textSize="21sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_adds"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_time"
+        app:layout_constraintTop_toBottomOf="@id/tv_adds"
+        app:layout_constraintStart_toEndOf="@id/tv_tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="15dp"
+        android:importantForAutofill="no"
+        android:inputType=""
+        android:textColor="@color/black"
+        android:background="@drawable/edit_text_background"
+        android:cursorVisible="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="75dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/add"
+        android:background="@color/green"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
