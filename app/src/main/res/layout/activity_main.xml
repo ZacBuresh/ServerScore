@@ -7,17 +7,30 @@
     tools:context=".MainActivity"
     android:background="@color/black">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:id="@+id/iv_ss"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toTopOf="@id/et_name"
+        app:layout_constraintEnd_toEndOf="@id/tv_title"
+        app:layout_constraintStart_toStartOf="@id/tv_title"
+        android:src="@mipmap/ic_ss_foreground"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_title"
+        android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/et_name"
-        android:text="@string/welcome_to_server_score"
-        android:textSize="32sp"
+        android:text="@string/server_score"
+        android:textSize="28sp"
         android:textColor="@color/white"
         android:fontFamily="sans-serif-thin"/>
+
 
     <EditText
         android:id="@+id/et_name"
@@ -25,11 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/enter_your_name"
-        android:paddingTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
         android:layout_width="0dp"
@@ -39,6 +51,7 @@
         app:layout_constraintStart_toStartOf="@id/tv_title"
         app:layout_constraintEnd_toEndOf="@id/tv_title"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:background="@color/green"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

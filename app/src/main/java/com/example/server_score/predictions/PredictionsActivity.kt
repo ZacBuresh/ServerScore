@@ -21,6 +21,7 @@ class PredictionsActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.toolbar_score)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
         val username = intent.getStringExtra("USERNAME")
         toolbarTitle.text = username

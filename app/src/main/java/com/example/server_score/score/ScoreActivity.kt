@@ -20,9 +20,10 @@ class ScoreActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.toolbar_score)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
         val username = intent.getStringExtra("USERNAME")
-        toolbarTitle.text = username
+        toolbarTitle.text = "$username's Server Score"
 
         navigationView.setOnNavigationItemSelectedListener { item ->
                 when (item.itemId) {

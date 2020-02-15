@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/gradient">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_score"
@@ -30,12 +31,119 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_score"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_score"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Score Activity"
-        android:textColor="@color/black"/>
+        android:layout_marginTop="30dp"
+        android:background="@drawable/score_circle"
+        android:text="100"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="50sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_overall"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        android:text="@string/overall_performance"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_avg_tips"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_overall"
+        android:text="Tips:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_avg_tip_num"
+        app:layout_constraintStart_toEndOf="@id/tv_avg_tips"
+        app:layout_constraintTop_toTopOf="@id/tv_avg_tips"
+        android:textColor="@color/black"
+        android:text="$82.43"
+        android:layout_marginStart="20dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_wage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_avg_tips"
+        android:text="Hourly Earnings:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_wage_num"
+        app:layout_constraintStart_toEndOf="@id/tv_wage"
+        app:layout_constraintTop_toTopOf="@id/tv_wage"
+        android:textColor="@color/black"
+        android:text="$25.34"
+        android:layout_marginStart="20dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_add_ons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_wage"
+        android:text="Add Ons:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_add_ons_num"
+        app:layout_constraintStart_toEndOf="@id/tv_add_ons"
+        app:layout_constraintTop_toTopOf="@id/tv_add_ons"
+        android:textColor="@color/black"
+        android:text="$5.43"
+        android:layout_marginStart="20dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_check_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_ons"
+        android:text="Check Time:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_check_time_num"
+        app:layout_constraintStart_toEndOf="@id/tv_check_time"
+        app:layout_constraintTop_toTopOf="@id/tv_check_time"
+        android:textColor="@color/black"
+        android:text="50 Minutes"
+        android:layout_marginStart="20dp"
+        android:textSize="18sp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
