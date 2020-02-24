@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import com.example.server_score.MainActivity
 import com.example.server_score.R
 import com.example.server_score.add.AddActivity
 import com.example.server_score.score.ScoreActivity
@@ -22,6 +23,13 @@ class PredictionsActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar_score)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
         val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
         val username = intent.getStringExtra("USERNAME")
         toolbarTitle.text = username

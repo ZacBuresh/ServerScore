@@ -1,14 +1,21 @@
 package com.example.server_score.model
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
+import androidx.room.*
 
 @Dao
 interface UserDao {
     @Insert
-    fun insert(user: User)
+    suspend fun insert(user: Users)
 
     @Delete
-    fun delete(user: User)
+    fun delete(user: Users)
+
+    @Update
+    suspend fun update(user: Users)
+
+    @Query("SELECT * FROM users")
+    suspend fun getAllUsers() : List<Users>
+
+    @Query("SELECT COUNT(*) FROM users")
+    suspend fun getCount(): Int
 }
