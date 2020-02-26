@@ -1,26 +1,25 @@
 package com.example.server_score
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
-import com.example.server_score.add.AddActivity
 import com.example.server_score.model.AppDatabase
 import com.example.server_score.model.Users
+import com.example.server_score.score.ScoreActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.new_user_dialog.*
 import kotlinx.coroutines.runBlocking
+import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var username: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         getSpinnerList(db)
 
         bt_start.setOnClickListener {
-            val intent = Intent(this, AddActivity::class.java)
+            val intent = Intent(this, ScoreActivity::class.java)
             intent.putExtra("USERNAME", spinner.selectedItem.toString())
             startActivity(intent)
         }
@@ -46,11 +45,16 @@ class MainActivity : AppCompatActivity() {
             val cancel = dialog.findViewById<Button>(R.id.bt_cancel)
             val newUser = dialog.findViewById<EditText>(R.id.et_user)
             submit.setOnClickListener {
-                val newUser = Users(
-                    getUserCount(db) + 1, newUser.text.toString(), null,
-                    null, null, null
-                )
-                insertUser(db, newUser)
+                if(!userExists(db, newUser)) {
+                    val user = Users(
+                        Random.nextInt(), newUser.text.toString(), null,
+                        null, null, null
+                    )
+                    insertUser(db, user)
+                }
+                else{
+                    Toast.makeText(this, "User Already Exists", Toast.LENGTH_LONG).show()
+                }
                 getSpinnerList(db)
                 dialog.dismiss()
             }
@@ -61,31 +65,71 @@ class MainActivity : AppCompatActivity() {
         }
 
         fab_delete.setOnClickListener {
-            val alert
+            val dialog = Dialog(this)
+            dialog.setContentView(R.layout.delete_user_dialog)
+            val yes = dialog.findViewById<Button>(R.id.bt_yes)
+            val no = dialog.findViewById<Button>(R.id.bt_no)
+            yes.setOnClickListener {
+                getUsers(db).forEach(){
+                    if(it.name == spinner.selectedItem.toString()){
+                        deleteUser(db, it)
+                    }
+                }
+                getSpinnerList(db)
+                dialog.dismiss()
+            }
+            no.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.show()
         }
     }
 
-    fun getUsers(db: AppDatabase): List<Users> = runBlocking {
+    private fun getUsers(db: AppDatabase): List<Users> = runBlocking {
         db.userDao().getAllUsers()
     }
 
-    fun getUserCount(db: AppDatabase): Int = runBlocking{
+    private fun getUserCount(db: AppDatabase): Int = runBlocking{
         db.userDao().getCount()
     }
 
-    fun insertUser(db: AppDatabase, newUser: Users) = runBlocking {
+    private fun insertUser(db: AppDatabase, newUser: Users) = runBlocking {
         db.userDao().insert(newUser)
     }
 
-    fun getSpinnerList(db: AppDatabase){
+    private fun deleteUser(db: AppDatabase, user: Users) = runBlocking{
+        db.userDao().delete(user)
+    }
+
+    private fun getSpinnerList(db: AppDatabase){
         val userList : MutableList<String> = ArrayList()
         getUsers(db).forEach(){
-            it.name?.let { it1 -> userList.add(it1) }
+            if(!spinnerUserExists(userList, it.name!!)) {
+                userList.add(it.name)
+            }
         }
         val adapter: ArrayAdapter<String> = ArrayAdapter(
-            this, android.R.layout.simple_spinner_item, userList
+            this, R.layout.spinner_item, userList
         )
         spinner.adapter = adapter
+    }
+
+    private fun spinnerUserExists(userList: MutableList<String>, name: String): Boolean{
+        userList.forEach{
+            if(it == name){
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun userExists(db: AppDatabase, newUser: EditText): Boolean{
+        getUsers(db).forEach(){
+            if(it.name == newUser.text.toString()){
+                return true
+            }
+        }
+        return false
     }
 
 }

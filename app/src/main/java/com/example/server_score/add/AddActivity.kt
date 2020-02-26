@@ -3,6 +3,7 @@ package com.example.server_score.add
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.room.Room
@@ -43,6 +44,8 @@ class AddActivity : AppCompatActivity() {
         val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
         val username = intent.getStringExtra("USERNAME")
         toolbarTitle.text = username
+        val item: MenuItem = navigationView.menu.getItem(1)
+        item.isChecked = true
 
         navigationView.setOnNavigationItemSelectedListener { item ->
                 when (item.itemId) {

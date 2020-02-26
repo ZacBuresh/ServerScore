@@ -3,6 +3,7 @@ package com.example.server_score.predictions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.example.server_score.MainActivity
@@ -33,6 +34,8 @@ class PredictionsActivity : AppCompatActivity() {
         val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
         val username = intent.getStringExtra("USERNAME")
         toolbarTitle.text = username
+        val item: MenuItem = navigationView.menu.getItem(2)
+        item.isChecked = true
 
         navigationView.setOnNavigationItemSelectedListener { item ->
                 when (item.itemId) {

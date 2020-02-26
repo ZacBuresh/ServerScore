@@ -3,6 +3,8 @@ package com.example.server_score.score
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -25,6 +27,12 @@ class ScoreActivity : AppCompatActivity() {
 
     lateinit var toolbar: Toolbar
 
+    companion object{
+        const val STANDARD_HOURLY_AVG = 20.0
+        const val STANDARD_ADD_ON_AVG = 5.0
+        const val STANDARD_CHECK_TIME_AVG = 53
+    }
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +50,9 @@ class ScoreActivity : AppCompatActivity() {
         }
         val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
         val username = intent.getStringExtra("USERNAME")
-        toolbarTitle.text = "$username's Server Score"
+        toolbarTitle.text = username
+        val item: MenuItem = navigationView.menu.getItem(0)
+        item.isChecked = true
 
         val db = Room.databaseBuilder(
             applicationContext,
@@ -74,32 +84,33 @@ class ScoreActivity : AppCompatActivity() {
             }
         }
 
-        if (userShiftCount == 0) {
+        if (userShiftCount == 0 || shiftCount == 0) {
             val newUser = Users(
                 userId + 1, username, tipTotal / 1,
                 tipTotal / hoursTotal, addOnsTotal / 1, checkTimeTotal / 1
             )
             insertUser(db, newUser)
+            tv_avg_tip_num.text = "0"
+            tv_wage_num.text = "0"
+            tv_add_ons_num.text = "0"
+            tv_check_time_num.text = "0"
         } else {
             val updatedUser = Users(
                 userId, username, tipTotal / shiftCount, tipTotal / hoursTotal,
                 addOnsTotal / shiftCount, checkTimeTotal / shiftCount
             )
             updateUser(db, updatedUser)
-        }
-
-        getUsers(db).forEach() {
-            if (it.name == username) {
-                val df = DecimalFormat("#.##")
-                df.roundingMode = RoundingMode.CEILING
-                tv_avg_tip_num.text = it.avgTips.toString()
-                val hourly = df.format(it.avgHourly).toString()
-                tv_wage_num.text = hourly
-                tv_add_ons_num.text = it.avgAddOns.toString()
-                tv_check_time_num.text = it.avgCheckTime.toString()
+            getUsers(db).forEach() {
+                if (it.name == username) {
+                    tv_avg_tip_num.text = String.format("%.2f", it.avgTips)
+                    tv_wage_num.text = String.format("%.2f", it.avgHourly)
+                    tv_add_ons_num.text = String.format("%.2f", it.avgAddOns)
+                    tv_check_time_num.text = it.avgCheckTime.toString()
+                }
             }
         }
 
+        calculateServerScore(db, username)
 
         navigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -137,5 +148,23 @@ class ScoreActivity : AppCompatActivity() {
 
     fun updateUser(db: AppDatabase, updatedUser: Users) = runBlocking {
         db.userDao().update(updatedUser)
+    }
+
+    fun calculateServerScore(db: AppDatabase, username: String){
+        getUsers(db).forEach(){
+            if(it.name == username){
+                if(it.avgHourly == null || it.avgCheckTime == null || it.avgAddOns == null || it.avgTips == null){
+                    tv_score.text = "0"
+                }
+                else {
+                    val hourlyResult = it.avgHourly - STANDARD_HOURLY_AVG
+                    val addonResult = it.avgAddOns - STANDARD_ADD_ON_AVG
+                    val checktimeResult = it.avgCheckTime - STANDARD_CHECK_TIME_AVG
+                    val serverScore =
+                        String.format("%.0f", hourlyResult + addonResult + checktimeResult)
+                    tv_score.text = serverScore
+                }
+            }
+        }
     }
 }
