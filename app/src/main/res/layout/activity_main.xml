@@ -66,14 +66,15 @@
         android:backgroundTint="@color/green"/>
 
     <Button
+        android:id="@+id/bt_start"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/bt_start"
-        android:text="@string/start"
-        app:layout_constraintStart_toStartOf="@id/tv_title"
-        app:layout_constraintEnd_toEndOf="@id/tv_title"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="20dp"
-        android:background="@color/green"/>
+        android:background="@color/green"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="@string/start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_title"
+        app:layout_constraintStart_toStartOf="@id/tv_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

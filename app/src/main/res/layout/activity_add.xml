@@ -28,28 +28,30 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
+        android:id="@+id/tv_shift_report"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_shift_report"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_score"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="60dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="@string/shift_report"
+        android:textColor="@color/black"
         android:textSize="21sp"
-        android:textColor="@color/black" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_score" />
 
     <TextView
+        android:id="@+id/tv_tips"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_tips"
-        android:text="@string/total_tips"
-        android:textSize="21sp"
-        android:textColor="@color/black"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="@string/total_tips"
+        android:textColor="@color/black"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_shift_report"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_shift_report" />
 
     <EditText
         android:layout_width="0dp"
@@ -68,16 +70,17 @@
         android:cursorVisible="false"/>
 
     <TextView
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:id="@+id/tv_hours"
-    android:text="@string/hours"
-    android:textSize="21sp"
-    android:textColor="@color/black"
+        android:id="@+id/tv_hours"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/tv_tips"
-    android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="@string/hours"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_tips" />
 
     <EditText
         android:layout_width="0dp"
@@ -96,16 +99,17 @@
         android:cursorVisible="false"/>
 
     <TextView
+        android:id="@+id/tv_guests"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_guests"
-        android:text="@string/guests"
-        android:textSize="21sp"
-        android:textColor="@color/black"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="@string/guests"
+        android:textColor="@color/black"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_hours"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_hours" />
 
     <EditText
         android:layout_width="0dp"
@@ -124,16 +128,17 @@
         android:cursorVisible="false"/>
 
     <TextView
+        android:id="@+id/tv_adds"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_adds"
-        android:text="Add Ons"
-        android:textSize="21sp"
-        android:textColor="@color/black"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="Add Ons"
+        android:textColor="@color/black"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_guests"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_guests" />
 
     <EditText
         android:layout_width="0dp"
@@ -152,16 +157,17 @@
         android:cursorVisible="false"/>
 
     <TextView
+        android:id="@+id/tv_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_time"
-        android:text="@string/avg_check_time"
-        android:textSize="21sp"
-        android:textColor="@color/black"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="@string/avg_check_time"
+        android:textColor="@color/black"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_adds"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_adds" />
 
     <EditText
         android:layout_width="0dp"
@@ -180,15 +186,16 @@
         android:cursorVisible="false"/>
 
     <Button
+        android:id="@+id/bt_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bt_add"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="75dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:background="@color/green"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="@string/add"
-        android:background="@color/green"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"

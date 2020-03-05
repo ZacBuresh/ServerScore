@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.example.server_score.model.AppDatabase
+import com.example.server_score.model.Shifts
 import com.example.server_score.model.Users
 import com.example.server_score.score.ScoreActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -75,6 +76,11 @@ class MainActivity : AppCompatActivity() {
                         deleteUser(db, it)
                     }
                 }
+                getShifts(db).forEach(){
+                    if(it.name == spinner.selectedItem.toString()){
+                        deleteShift(db, it)
+                    }
+                }
                 getSpinnerList(db)
                 dialog.dismiss()
             }
@@ -89,8 +95,8 @@ class MainActivity : AppCompatActivity() {
         db.userDao().getAllUsers()
     }
 
-    private fun getUserCount(db: AppDatabase): Int = runBlocking{
-        db.userDao().getCount()
+    private fun getShifts(db: AppDatabase): List<Shifts> = runBlocking {
+        db.shiftDao().getAllShifts()
     }
 
     private fun insertUser(db: AppDatabase, newUser: Users) = runBlocking {
@@ -99,6 +105,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun deleteUser(db: AppDatabase, user: Users) = runBlocking{
         db.userDao().delete(user)
+    }
+
+    private fun deleteShift(db: AppDatabase, shift: Shifts) = runBlocking{
+        db.shiftDao().delete(shift)
     }
 
     private fun getSpinnerList(db: AppDatabase){

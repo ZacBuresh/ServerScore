@@ -19,6 +19,7 @@ import com.example.server_score.predictions.PredictionsActivity
 import kotlinx.android.synthetic.main.activity_add.navigationView
 import kotlinx.android.synthetic.main.activity_score.*
 import kotlinx.coroutines.runBlocking
+import java.lang.Integer.parseInt
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -76,36 +77,27 @@ class ScoreActivity : AppCompatActivity() {
 
         var userShiftCount = 0
         var userId = 0
+        var ct = 0
         getUsers(db).forEach() {
             userId++
-            if (it.name == username) {
+            if (it.name == username && ct == 0) {
+                ct++
                 userShiftCount++
-                userId = it.uid
-            }
-        }
-
-        if (userShiftCount == 0 || shiftCount == 0) {
-            val newUser = Users(
-                userId + 1, username, tipTotal / 1,
-                tipTotal / hoursTotal, addOnsTotal / 1, checkTimeTotal / 1
-            )
-            insertUser(db, newUser)
-            tv_avg_tip_num.text = "0"
-            tv_wage_num.text = "0"
-            tv_add_ons_num.text = "0"
-            tv_check_time_num.text = "0"
-        } else {
-            val updatedUser = Users(
-                userId, username, tipTotal / shiftCount, tipTotal / hoursTotal,
-                addOnsTotal / shiftCount, checkTimeTotal / shiftCount
-            )
-            updateUser(db, updatedUser)
-            getUsers(db).forEach() {
-                if (it.name == username) {
-                    tv_avg_tip_num.text = String.format("%.2f", it.avgTips)
-                    tv_wage_num.text = String.format("%.2f", it.avgHourly)
-                    tv_add_ons_num.text = String.format("%.2f", it.avgAddOns)
-                    tv_check_time_num.text = it.avgCheckTime.toString()
+                if (userShiftCount == 0 || shiftCount == 0) {
+                    tv_avg_tip_num.text = "0"
+                    tv_wage_num.text = "0"
+                    tv_add_ons_num.text = "0"
+                    tv_check_time_num.text = "0"
+                } else {
+                    val updatedUser = Users(
+                        it.uid, username, tipTotal / shiftCount, tipTotal / hoursTotal,
+                        addOnsTotal / shiftCount, checkTimeTotal / shiftCount
+                    )
+                    updateUser(db, updatedUser)
+                    tv_avg_tip_num.text = "$" + String.format("%.2f", updatedUser.avgTips)
+                    tv_wage_num.text = "$" + String.format("%.2f", updatedUser.avgHourly)
+                    tv_add_ons_num.text = "$" + String.format("%.2f", updatedUser.avgAddOns)
+                    tv_check_time_num.text = updatedUser.avgCheckTime.toString() + " Minutes"
                 }
             }
         }
@@ -142,10 +134,6 @@ class ScoreActivity : AppCompatActivity() {
         db.userDao().getAllUsers()
     }
 
-    fun insertUser(db: AppDatabase, newUser: Users) = runBlocking {
-        db.userDao().insert(newUser)
-    }
-
     fun updateUser(db: AppDatabase, updatedUser: Users) = runBlocking {
         db.userDao().update(updatedUser)
     }
@@ -159,10 +147,11 @@ class ScoreActivity : AppCompatActivity() {
                 else {
                     val hourlyResult = it.avgHourly - STANDARD_HOURLY_AVG
                     val addonResult = it.avgAddOns - STANDARD_ADD_ON_AVG
-                    val checktimeResult = it.avgCheckTime - STANDARD_CHECK_TIME_AVG
+                    val checktimeResult = STANDARD_CHECK_TIME_AVG - it.avgCheckTime
                     val serverScore =
                         String.format("%.0f", hourlyResult + addonResult + checktimeResult)
                     tv_score.text = serverScore
+                    slider.progress = parseInt(serverScore) + 50
                 }
             }
         }

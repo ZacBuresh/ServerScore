@@ -12,7 +12,7 @@ interface ShiftDao {
     suspend fun insert(shift: Shifts)
 
     @Delete
-    fun delete(shift: Shifts)
+    suspend fun delete(shift: Shifts)
 
     @Query("SELECT * FROM shifts")
     suspend fun getAllShifts() : List<Shifts>

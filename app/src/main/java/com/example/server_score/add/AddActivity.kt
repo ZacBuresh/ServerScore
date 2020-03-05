@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.room.Room
 import com.example.server_score.MainActivity
@@ -17,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.coroutines.runBlocking
 import java.util.*
+import kotlin.random.Random
 
 class AddActivity : AppCompatActivity() {
 
@@ -69,15 +71,24 @@ class AddActivity : AppCompatActivity() {
         }
 
         bt_add.setOnClickListener {
-            val newShift = Shifts(getShifts(db) + 1, username, et_total_tips.text.toString().toFloat(),
-                et_hours.text.toString().toFloat(), et_guests.text.toString().toInt(),
-                et_adds.text.toString().toFloat(), et_time.text.toString().toInt())
-            insertShift(db, newShift)
-            et_total_tips.text.clear()
-            et_hours.text.clear()
-            et_guests.text.clear()
-            et_adds.text.clear()
-            et_time.text.clear()
+            if(et_total_tips.text.toString() != "" && et_hours.text.toString() != "" &&
+                et_guests.text.toString() != "" && et_adds.text.toString() != "" &&
+                    et_time.text.toString() != "") {
+                val newShift = Shifts(
+                    Random.nextInt(), username, et_total_tips.text.toString().toFloat(),
+                    et_hours.text.toString().toFloat(), et_guests.text.toString().toInt(),
+                    et_adds.text.toString().toFloat(), et_time.text.toString().toInt()
+                )
+                insertShift(db, newShift)
+                et_total_tips.text.clear()
+                et_hours.text.clear()
+                et_guests.text.clear()
+                et_adds.text.clear()
+                et_time.text.clear()
+            }
+            else{
+                Toast.makeText(this, "Complete All Fields", Toast.LENGTH_LONG).show()
+            }
         }
 
     }

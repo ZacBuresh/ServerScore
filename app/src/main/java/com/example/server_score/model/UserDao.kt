@@ -4,6 +4,7 @@ import androidx.room.*
 
 @Dao
 interface UserDao {
+
     @Insert
     suspend fun insert(user: Users)
 
@@ -18,4 +19,6 @@ interface UserDao {
 
     @Query("SELECT COUNT(*) FROM users")
     suspend fun getCount(): Int
+
+
 }

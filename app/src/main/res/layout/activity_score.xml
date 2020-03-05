@@ -28,122 +28,144 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
+        android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_score"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_score"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="30dp"
         android:background="@drawable/score_circle"
-        android:text="100"
+        android:fontFamily="@font/alfa_slab_one"
         android:gravity="center"
+        android:text="100"
         android:textColor="@color/black"
-        android:textSize="50sp"/>
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_score" />
+
+    <SeekBar
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/slider"
+        app:layout_constraintTop_toBottomOf="@id/tv_score"
+        app:layout_constraintStart_toStartOf="@id/tv_overall"
+        app:layout_constraintEnd_toEndOf="@id/tv_overall"
+        android:layout_marginTop="20dp"
+        android:progressDrawable="@drawable/score_meter_background"
+        android:thumb="@drawable/thumb_image"/>
 
     <TextView
+        android:id="@+id/tv_overall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_overall"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_score"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="@string/overall_performance"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/black"
         android:textSize="21sp"
-        android:text="@string/overall_performance"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slider" />
 
     <TextView
+        android:id="@+id/tv_avg_tips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_avg_tips"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_overall"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="Tips:"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_avg_tip_num"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_avg_tips"
-        android:textColor="@color/black"
-        android:text="$82.43"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_wage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_avg_tips"
+        app:layout_constraintTop_toBottomOf="@id/tv_overall" />
+
+    <TextView
+        android:id="@+id/tv_avg_tip_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="$82.43"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_avg_tips" />
+
+    <TextView
+        android:id="@+id/tv_wage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="Hourly Earnings:"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_wage_num"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_wage"
-        android:textColor="@color/black"
-        android:text="$25.34"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_add_ons"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_wage"
+        app:layout_constraintTop_toBottomOf="@id/tv_avg_tips" />
+
+    <TextView
+        android:id="@+id/tv_wage_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="$25.34"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_wage" />
+
+    <TextView
+        android:id="@+id/tv_add_ons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="Add Ons:"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_add_ons_num"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_add_ons"
-        android:textColor="@color/black"
-        android:text="$5.43"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_check_time"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_ons"
+        app:layout_constraintTop_toBottomOf="@id/tv_wage" />
+
+    <TextView
+        android:id="@+id/tv_add_ons_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="$5.43"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_add_ons" />
+
+    <TextView
+        android:id="@+id/tv_check_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="Check Time:"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_ons" />
 
     <TextView
+        android:id="@+id/tv_check_time_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_check_time_num"
         android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_check_time"
-        android:textColor="@color/black"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="50 Minutes"
-        android:textSize="18sp"/>
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_check_time" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
