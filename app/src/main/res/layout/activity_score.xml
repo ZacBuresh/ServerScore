@@ -72,11 +72,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/alfa_slab_one"
         android:text="Tips:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_overall" />
 
@@ -88,9 +88,34 @@
         android:fontFamily="@font/alfa_slab_one"
         android:text="$82.43"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_avg_tips" />
+
+    <TextView
+        android:id="@+id/tv_sales"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="Tip %:"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_avg_tips" />
+
+    <TextView
+        android:id="@+id/tv_sales_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="18.2%"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_sales" />
 
     <TextView
         android:id="@+id/tv_wage"
@@ -101,9 +126,9 @@
         android:fontFamily="@font/alfa_slab_one"
         android:text="Hourly Earnings:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_avg_tips" />
+        app:layout_constraintTop_toBottomOf="@id/tv_sales" />
 
     <TextView
         android:id="@+id/tv_wage_num"
@@ -113,7 +138,7 @@
         android:fontFamily="@font/alfa_slab_one"
         android:text="$25.34"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_wage" />
 
@@ -126,7 +151,7 @@
         android:fontFamily="@font/alfa_slab_one"
         android:text="Add Ons:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_wage" />
 
@@ -138,7 +163,7 @@
         android:fontFamily="@font/alfa_slab_one"
         android:text="$5.43"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_add_ons" />
 
@@ -151,7 +176,7 @@
         android:fontFamily="@font/alfa_slab_one"
         android:text="Check Time:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_add_ons" />
 
@@ -163,7 +188,7 @@
         android:fontFamily="@font/alfa_slab_one"
         android:text="50 Minutes"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_check_time" />
 

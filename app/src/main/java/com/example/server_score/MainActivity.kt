@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 if(!userExists(db, newUser)) {
                     val user = Users(
                         Random.nextInt(), newUser.text.toString(), null,
-                        null, null, null
+                        null, null, null, null
                     )
                     insertUser(db, user)
                 }

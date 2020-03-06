@@ -62,6 +62,7 @@ class ScoreActivity : AppCompatActivity() {
 
         var shiftCount = 0
         var tipTotal = 0F
+        var salesTotal = 0F
         var hoursTotal = 0F
         var addOnsTotal = 0F
         var checkTimeTotal = 0
@@ -69,6 +70,7 @@ class ScoreActivity : AppCompatActivity() {
             if (it.name == username) {
                 shiftCount++
                 tipTotal += it.totalTips!!
+                salesTotal += it.totalSales!!
                 hoursTotal += it.hours!!
                 addOnsTotal += it.addOns!!
                 checkTimeTotal += it.checkTime!!
@@ -85,16 +87,19 @@ class ScoreActivity : AppCompatActivity() {
                 userShiftCount++
                 if (userShiftCount == 0 || shiftCount == 0) {
                     tv_avg_tip_num.text = "0"
+                    tv_sales_num.text = "0"
                     tv_wage_num.text = "0"
                     tv_add_ons_num.text = "0"
                     tv_check_time_num.text = "0"
                 } else {
                     val updatedUser = Users(
-                        it.uid, username, tipTotal / shiftCount, tipTotal / hoursTotal,
-                        addOnsTotal / shiftCount, checkTimeTotal / shiftCount
+                        it.uid, username, tipTotal / shiftCount, salesTotal / shiftCount,
+                        tipTotal / hoursTotal, addOnsTotal / shiftCount,
+                        checkTimeTotal / shiftCount
                     )
                     updateUser(db, updatedUser)
                     tv_avg_tip_num.text = "$" + String.format("%.2f", updatedUser.avgTips)
+                    tv_sales_num.text = String.format("%.2f", ((updatedUser.avgTips?.div(updatedUser.avgSales!!))?.times(100))) + "%"
                     tv_wage_num.text = "$" + String.format("%.2f", updatedUser.avgHourly)
                     tv_add_ons_num.text = "$" + String.format("%.2f", updatedUser.avgAddOns)
                     tv_check_time_num.text = updatedUser.avgCheckTime.toString() + " Minutes"
