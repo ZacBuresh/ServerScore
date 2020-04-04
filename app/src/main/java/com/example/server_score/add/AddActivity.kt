@@ -73,19 +73,16 @@ class AddActivity : AppCompatActivity() {
 
         bt_add.setOnClickListener {
             if(et_total_tips.text.toString() != "" && et_hours.text.toString() != "" &&
-                et_guests.text.toString() != "" && et_adds.text.toString() != "" &&
                     et_time.text.toString() != "" && et_sales.text.toString() != "") {
                 val newShift = Shifts(
                     Random.nextInt(), username, et_total_tips.text.toString().toFloat(),
                     et_sales.text.toString().toFloat(), et_hours.text.toString().toFloat(),
-                    et_guests.text.toString().toInt(), et_adds.text.toString().toFloat(),
-                    et_time.text.toString().toInt(), getDayOfWeek()
+                    et_adds.text.toString().toFloat(), et_time.text.toString().toInt(), getDayOfWeek()
                 )
                 insertShift(db, newShift)
                 et_total_tips.text.clear()
                 et_sales.text.clear()
                 et_hours.text.clear()
-                et_guests.text.clear()
                 et_adds.text.clear()
                 et_time.text.clear()
 

@@ -12,7 +12,6 @@ data class Shifts(
     @ColumnInfo(name = "total_tips") val totalTips: Float?,
     @ColumnInfo(name = "total_sales") val totalSales: Float?,
     @ColumnInfo(name = "hours") val hours: Float?,
-    @ColumnInfo(name = "num_guests") val numGuests: Int?,
     @ColumnInfo(name = "add_ons") val addOns: Float?,
     @ColumnInfo(name = "check_time") val checkTime: Int?,
     @ColumnInfo(name = "date") val date: String?
