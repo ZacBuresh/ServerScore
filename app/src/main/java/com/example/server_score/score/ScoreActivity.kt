@@ -54,6 +54,8 @@ class ScoreActivity : AppCompatActivity() {
         toolbarTitle.text = username
         val item: MenuItem = navigationView.menu.getItem(0)
         item.isChecked = true
+        slider.min = 0
+        slider.max = 40
 
         val db = Room.databaseBuilder(
             applicationContext,
@@ -156,7 +158,7 @@ class ScoreActivity : AppCompatActivity() {
                     val serverScore =
                         String.format("%.0f", hourlyResult + addonResult + checktimeResult)
                     tv_score.text = serverScore
-                    slider.progress = parseInt(serverScore) + 50
+                    slider.progress = parseInt(serverScore) + 20
                 }
             }
         }

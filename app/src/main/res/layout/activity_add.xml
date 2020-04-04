@@ -127,35 +127,6 @@
         android:cursorVisible="false"/>
 
     <TextView
-        android:id="@+id/tv_guests"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/alfa_slab_one"
-        android:text="@string/guests"
-        android:textColor="@color/black"
-        android:textSize="21sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_hours" />
-
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_guests"
-        app:layout_constraintTop_toBottomOf="@id/tv_hours"
-        app:layout_constraintStart_toEndOf="@id/tv_tips"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="15dp"
-        android:importantForAutofill="no"
-        android:inputType=""
-        android:textColor="@color/black"
-        android:background="@drawable/edit_text_background"
-        android:cursorVisible="false"/>
-
-    <TextView
         android:id="@+id/tv_adds"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -166,13 +137,13 @@
         android:textColor="@color/black"
         android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_guests" />
+        app:layout_constraintTop_toBottomOf="@id/tv_hours" />
 
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/et_adds"
-        app:layout_constraintTop_toBottomOf="@id/tv_guests"
+        app:layout_constraintTop_toBottomOf="@id/tv_hours"
         app:layout_constraintStart_toEndOf="@id/tv_tips"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="20dp"

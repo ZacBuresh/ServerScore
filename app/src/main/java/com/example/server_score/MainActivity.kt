@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "Server-Score-Database"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
 
         getSpinnerList(db)
 
