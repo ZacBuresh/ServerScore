@@ -21,34 +21,19 @@ import java.util.*
 import kotlin.random.Random
 
 
-class AddActivity : AppCompatActivity() {
+class AddActivity : AddInterface, AppCompatActivity() {
 
     lateinit var toolbar: Toolbar
+    private lateinit var today: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "Server-Score-Database"
-        ).build()
+        val username = setupActivity()
 
-        toolbar = findViewById(R.id.toolbar_score)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-        toolbar.setNavigationOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-        val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
-        val username = intent.getStringExtra("USERNAME")
-        toolbarTitle.text = username
-        val item: MenuItem = navigationView.menu.getItem(1)
-        item.isChecked = true
+        val presenter = AddPresenter(this, this)
+        presenter.startPresenter()
 
         navigationView.setOnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
@@ -74,12 +59,13 @@ class AddActivity : AppCompatActivity() {
         bt_add.setOnClickListener {
             if(et_total_tips.text.toString() != "" && et_hours.text.toString() != "" &&
                     et_time.text.toString() != "" && et_sales.text.toString() != "") {
+                presenter.getDayOfWeek()
                 val newShift = Shifts(
                     Random.nextInt(), username, et_total_tips.text.toString().toFloat(),
                     et_sales.text.toString().toFloat(), et_hours.text.toString().toFloat(),
-                    et_adds.text.toString().toFloat(), et_time.text.toString().toInt(), getDayOfWeek()
+                    et_adds.text.toString().toFloat(), et_time.text.toString().toInt(), today
                 )
-                insertShift(db, newShift)
+                presenter.insertShift(newShift)
                 et_total_tips.text.clear()
                 et_sales.text.clear()
                 et_hours.text.clear()
@@ -92,16 +78,28 @@ class AddActivity : AppCompatActivity() {
                 Toast.makeText(this, "Complete All Fields", Toast.LENGTH_LONG).show()
             }
         }
-
     }
 
-    private fun insertShift(db: AppDatabase, shift: Shifts) = runBlocking {
-        db.shiftDao().insert(shift)
+    override fun getDayOfWeek(day: String) {
+        this.today = day
     }
 
-    private fun getDayOfWeek(): String{
-        val date = Calendar.getInstance().time
-        val formatted = SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.time)
-        return formatted.toString()
+    private fun setupActivity(): String{
+        toolbar = findViewById(R.id.toolbar_score)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
+        val username = intent.getStringExtra("USERNAME")
+        toolbarTitle.text = username
+        val item: MenuItem = navigationView.menu.getItem(1)
+        item.isChecked = true
+        return username
     }
 }
