@@ -20,7 +20,6 @@ import java.lang.Integer.parseInt
 class ScoreActivity : ScoreInterface, AppCompatActivity(){
 
     lateinit var toolbar: Toolbar
-    private lateinit var updatedUser: Users
 
     companion object{
         const val STANDARD_HOURLY_AVG = 20.0

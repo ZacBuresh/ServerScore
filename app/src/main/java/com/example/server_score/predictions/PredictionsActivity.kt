@@ -32,155 +32,36 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class PredictionsActivity : AppCompatActivity() {
+class PredictionsActivity : PredictionsInterface, AppCompatActivity() {
 
     lateinit var toolbar: Toolbar
+    lateinit var data: BarData
+    lateinit var dataset: BarDataSet
+    lateinit var today: String
+    var predMon = 0F; var predTues = 0F; var predWed = 0F; var predThur = 0F; var predFri = 0F
+    var predSat = 0F; var predSun = 0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_predictions)
 
-        toolbar = findViewById(R.id.toolbar_score)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-        toolbar.setNavigationOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-        val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
-        val username = intent.getStringExtra("USERNAME")
-        toolbarTitle.text = username
-        val item: MenuItem = navigationView.menu.getItem(2)
-        item.isChecked = true
+        val username = setupActivity()
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "Server-Score-Database"
-        ).build()
+        val presenter = PredictionsPresenter(this, this)
+        presenter.startPresenter(username)
 
-        var numMon = 0; var numTues = 0; var numWed = 0; var numThur = 0; var numFri = 0
-        var numSat = 0; var numSun = 0
-        var salesMon = 0F; var salesTues = 0F; var salesWed = 0F; var salesThur = 0F; var salesFri = 0F
-        var salesSat = 0F; var salesSun = 0F
-        getShifts(db).forEach() {
-            if (it.name == username) {
-                val day = it.date
-                when(day){
-                    "Monday" -> numMon++
-                    "Tuesday" -> numTues++
-                    "Wednesday" -> numWed++
-                    "Thursday" -> numThur++
-                    "Friday" -> numFri++
-                    "Saturday" -> numSat++
-                    "Sunday" -> numSun++
-                }
-                when(day){
-                    "Monday" -> salesMon += it.totalSales!!
-                    "Tuesday" -> salesTues += it.totalSales!!
-                    "Wednesday" -> salesWed += it.totalSales!!
-                    "Thursday" -> salesThur += it.totalSales!!
-                    "Friday" -> salesFri += it.totalSales!!
-                    "Saturday" -> salesSat += it.totalSales!!
-                    "Sunday" -> salesSun += it.totalSales!!
-                }
-            }
-        }
+        customizeBarChart()
 
-        val avgMon:Float = if(numMon == 0){
-            0F
-        } else{
-            salesMon / numMon
-        }
-
-        val avgTues:Float = if(numTues == 0){
-            0F
-        } else{
-            salesTues / numTues
-        }
-
-        val avgWed:Float = if(numWed == 0){
-            0F
-        } else{
-            salesWed / numWed
-        }
-
-        val avgThur:Float = if(numThur == 0){
-            0F
-        } else{
-            salesThur / numThur
-        }
-
-        val avgFri:Float = if(numFri == 0){
-            0F
-        } else{
-            salesFri / numFri
-        }
-
-        val avgSat:Float = if(numSat == 0){
-            0F
-        } else{
-            salesSat / numSat
-        }
-
-        val avgSun:Float = if(numSun == 0){
-            0F
-        } else{
-            salesSun / numSun
-        }
-
-        val entries: ArrayList<BarEntry> = ArrayList()
-        entries.add(BarEntry(0F,  avgMon))
-        entries.add(BarEntry(1F, avgTues))
-        entries.add(BarEntry(2F, avgWed))
-        entries.add(BarEntry(3F, avgThur))
-        entries.add(BarEntry(4F, avgFri))
-        entries.add(BarEntry(5F, avgSat))
-        entries.add(BarEntry(6F, avgSun))
-
-        val dataset = BarDataSet(entries, "Avg Total Sales")
-
-        val barChart = findViewById<BarChart>(R.id.barChart)
-        dataset.color = R.color.black
-        dataset.valueTextSize = 15F
-        val data = BarData(dataset)
-        barChart.xAxis.valueFormatter = MyXAxisFormatter()
-
-        barChart.xAxis.setDrawGridLines(false)
-        barChart.axisLeft.setDrawGridLines(false)
-        barChart.axisRight.setDrawGridLines(false)
-        barChart.data = data
-        barChart.legend.isEnabled = false
-        barChart.description = null
-        barChart.axisRight.setDrawLabels(false)
-        barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM;
-        barChart.xAxis.textSize = 20F
-        barChart.extraBottomOffset = 5F
-        barChart.axisLeft.textSize = 20F
-        barChart.axisLeft.axisMinimum = 0F
-
-        getUsers(db).forEach() {
-            if(username == it.name){
-                val userTipAvg = it.avgTips!! / it.avgSales!!
-                val predMon = avgMon * userTipAvg
-                val predTues = avgTues * userTipAvg
-                val predWed = avgWed * userTipAvg
-                val predThur = avgThur * userTipAvg
-                val predFri = avgFri * userTipAvg
-                val predSat = avgSat * userTipAvg
-                val predSun = avgSun * userTipAvg
-                when(getDayOfWeek()){
-                    "Monday" -> tv_prediction_num.text = "$" + String.format("%.2f", predMon)
-                    "Tuesday" -> tv_prediction_num.text = "$" + String.format("%.2f", predTues)
-                    "Wednesday" -> tv_prediction_num.text = "$" + String.format("%.2f", predWed)
-                    "Thursday" -> tv_prediction_num.text = "$" + String.format("%.2f", predThur)
-                    "Friday" -> tv_prediction_num.text = "$" + String.format("%.2f", predFri)
-                    "Saturday" -> tv_prediction_num.text = "$" + String.format("%.2f", predSat)
-                    "Sunday" -> tv_prediction_num.text = "$" + String.format("%.2f", predSun)
-                }
-            }
+        presenter.getDayOfWeek()
+        presenter.getPredictions()
+        when(today){
+            "Monday" -> tv_prediction_num.text = "$" + String.format("%.2f", predMon)
+            "Tuesday" -> tv_prediction_num.text = "$" + String.format("%.2f", predTues)
+            "Wednesday" -> tv_prediction_num.text = "$" + String.format("%.2f", predWed)
+            "Thursday" -> tv_prediction_num.text = "$" + String.format("%.2f", predThur)
+            "Friday" -> tv_prediction_num.text = "$" + String.format("%.2f", predFri)
+            "Saturday" -> tv_prediction_num.text = "$" + String.format("%.2f", predSat)
+            "Sunday" -> tv_prediction_num.text = "$" + String.format("%.2f", predSun)
         }
 
         navigationView.setOnNavigationItemSelectedListener { item ->
@@ -202,22 +83,71 @@ class PredictionsActivity : AppCompatActivity() {
                     }
                 }
                 false
-            }
+        }
     }
 
-    fun getShifts(db: AppDatabase): List<Shifts> = runBlocking {
-        db.shiftDao().getAllShifts()
+    override fun sendData(data: BarData) {
+        this.data = data
     }
 
-    fun getUsers(db: AppDatabase): List<Users> = runBlocking {
-        db.userDao().getAllUsers()
+    override fun sendDataSet(dataset: BarDataSet) {
+        this.dataset = dataset
     }
 
-    private fun getDayOfWeek(): String{
-        val date = Calendar.getInstance().time
-        val formatted = SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.time)
-        return formatted.toString()
+    override fun getDayOfWeek(today: String) {
+        this.today = today
     }
+
+    override fun sendPredictions(predMon: Float, predTues: Float, predWed: Float, predThur: Float,
+        predFri: Float, predSat: Float, predSun: Float
+    ) {
+        this.predMon = predMon
+        this.predTues = predTues
+        this.predWed = predWed
+        this.predThur = predThur
+        this.predFri = predFri
+        this.predSat = predSat
+        this.predSun = predSun
+    }
+
+    private fun setupActivity(): String{
+        toolbar = findViewById(R.id.toolbar_score)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
+        val username = intent.getStringExtra("USERNAME")
+        toolbarTitle.text = username
+        val item: MenuItem = navigationView.menu.getItem(2)
+        item.isChecked = true
+        return username
+    }
+
+    private fun customizeBarChart(){
+        val barChart = findViewById<BarChart>(R.id.barChart)
+        barChart.xAxis.valueFormatter = MyXAxisFormatter()
+        barChart.xAxis.setDrawGridLines(false)
+        barChart.axisLeft.setDrawGridLines(false)
+        barChart.axisRight.setDrawGridLines(false)
+        barChart.data = data
+        barChart.legend.isEnabled = false
+        barChart.description = null
+        barChart.axisRight.setDrawLabels(false)
+        barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM;
+        barChart.xAxis.textSize = 20F
+        barChart.extraBottomOffset = 5F
+        barChart.axisLeft.textSize = 20F
+        barChart.axisLeft.axisMinimum = 0F
+        dataset.color = R.color.black
+        dataset.valueTextSize = 15F
+    }
+
 }
 
 class MyXAxisFormatter : ValueFormatter() {
