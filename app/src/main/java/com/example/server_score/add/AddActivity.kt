@@ -7,17 +7,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.room.Room
-import com.example.server_score.MainActivity
+import com.example.server_score.main.MainActivity
 import com.example.server_score.R
-import com.example.server_score.model.AppDatabase
 import com.example.server_score.model.Shifts
 import com.example.server_score.predictions.PredictionsActivity
 import com.example.server_score.score.ScoreActivity
 import kotlinx.android.synthetic.main.activity_add.*
-import kotlinx.coroutines.runBlocking
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.random.Random
 
 

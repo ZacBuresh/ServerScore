@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.server_score.MainActivity
+import com.example.server_score.main.MainActivity
 import com.example.server_score.R
 import com.example.server_score.add.AddActivity
 import com.example.server_score.model.Users

@@ -6,30 +6,18 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.room.Room
-import com.example.server_score.MainActivity
+import com.example.server_score.main.MainActivity
 import com.example.server_score.R
 import com.example.server_score.add.AddActivity
-import com.example.server_score.model.AppDatabase
-import com.example.server_score.model.Shifts
-import com.example.server_score.model.Users
 import com.example.server_score.score.ScoreActivity
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
-import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_add.navigationView
 import kotlinx.android.synthetic.main.activity_predictions.*
-import kotlinx.coroutines.runBlocking
-import java.text.SimpleDateFormat
-import java.time.DayOfWeek
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class PredictionsActivity : PredictionsInterface, AppCompatActivity() {
