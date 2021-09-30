@@ -114,7 +114,7 @@ class PredictionsActivity : PredictionsInterface, AppCompatActivity() {
         toolbarTitle.text = username
         val item: MenuItem = navigationView.menu.getItem(2)
         item.isChecked = true
-        return username
+        return username!!
     }
 
     private fun customizeBarChart(){

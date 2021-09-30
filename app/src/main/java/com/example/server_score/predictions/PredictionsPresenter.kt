@@ -10,6 +10,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import kotlinx.coroutines.runBlocking
+import java.lang.NullPointerException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -129,14 +130,28 @@ class PredictionsPresenter(val v: PredictionsInterface, val context: Context) {
 
         getUsers(db).forEach() {
             if (username == it.name) {
-                val userTipAvg = it.avgTips!! / it.avgSales!!
-                predMon = avgMon * userTipAvg
-                predTues = avgTues * userTipAvg
-                predWed = avgWed * userTipAvg
-                predThur = avgThur * userTipAvg
-                predFri = avgFri * userTipAvg
-                predSat = avgSat * userTipAvg
-                predSun = avgSun * userTipAvg
+                try{
+                    val userTipAvg = it.avgTips!! / it.avgSales!!
+
+                    predMon = avgMon * userTipAvg
+                    predTues = avgTues * userTipAvg
+                    predWed = avgWed * userTipAvg
+                    predThur = avgThur * userTipAvg
+                    predFri = avgFri * userTipAvg
+                    predSat = avgSat * userTipAvg
+                    predSun = avgSun * userTipAvg
+                }
+
+                catch (e: NullPointerException){
+                    val userTipAvg = 0
+                    predMon = avgMon * userTipAvg
+                    predTues = avgTues * userTipAvg
+                    predWed = avgWed * userTipAvg
+                    predThur = avgThur * userTipAvg
+                    predFri = avgFri * userTipAvg
+                    predSat = avgSat * userTipAvg
+                    predSun = avgSun * userTipAvg
+                }
             }
         }
     }

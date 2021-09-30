@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_server_score_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".score.ScoreActivity"></activity>
+        <activity android:name=".score.ScoreActivity" />
         <activity android:name=".predictions.PredictionsActivity" />
         <activity android:name=".add.AddActivity" />
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
