@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.room.Room
-import com.example.server_score.MainActivity
 import com.example.server_score.R
 import com.example.server_score.add.AddActivity
+import com.example.server_score.main.MainActivity
 import com.example.server_score.model.AppDatabase
 import com.example.server_score.model.Shifts
 import com.example.server_score.model.Users
@@ -107,7 +107,9 @@ class ScoreActivity : AppCompatActivity() {
             }
         }
 
-        calculateServerScore(db, username)
+        if (username != null) {
+            calculateServerScore(db, username)
+        }
 
         navigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -131,19 +133,19 @@ class ScoreActivity : AppCompatActivity() {
         }
     }
 
-    fun getShifts(db: AppDatabase): List<Shifts> = runBlocking {
+    private fun getShifts(db: AppDatabase): List<Shifts> = runBlocking {
         db.shiftDao().getAllShifts()
     }
 
-    fun getUsers(db: AppDatabase): List<Users> = runBlocking {
+    private fun getUsers(db: AppDatabase): List<Users> = runBlocking {
         db.userDao().getAllUsers()
     }
 
-    fun updateUser(db: AppDatabase, updatedUser: Users) = runBlocking {
+    private fun updateUser(db: AppDatabase, updatedUser: Users) = runBlocking {
         db.userDao().update(updatedUser)
     }
 
-    fun calculateServerScore(db: AppDatabase, username: String){
+    private fun calculateServerScore(db: AppDatabase, username: String){
         getUsers(db).forEach(){
             if(it.name == username){
                 if(it.avgHourly == null || it.avgCheckTime == null || it.avgAddOns == null || it.avgTips == null){

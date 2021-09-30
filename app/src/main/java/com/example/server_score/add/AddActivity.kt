@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.room.Room
-import com.example.server_score.MainActivity
 import com.example.server_score.R
+import com.example.server_score.main.MainActivity
 import com.example.server_score.model.AppDatabase
 import com.example.server_score.model.Shifts
 import com.example.server_score.predictions.PredictionsActivity
@@ -19,7 +19,6 @@ import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random
-
 
 class AddActivity : AppCompatActivity() {
 
@@ -78,7 +77,7 @@ class AddActivity : AppCompatActivity() {
                 val newShift = Shifts(
                     Random.nextInt(), username, et_total_tips.text.toString().toFloat(),
                     et_sales.text.toString().toFloat(), et_hours.text.toString().toFloat(),
-                    et_guests.text.toString().toInt(), et_adds.text.toString().toFloat(),
+                    et_adds.text.toString().toFloat(),
                     et_time.text.toString().toInt(), getDayOfWeek()
                 )
                 insertShift(db, newShift)

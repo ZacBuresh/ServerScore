@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 
-@Database(entities = [Users::class, Shifts::class], version = 3)
+@Database(entities = [Users::class, Shifts::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun shiftDao(): ShiftDao
