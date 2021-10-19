@@ -8,7 +8,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 31
     defaultConfig {
-        applicationId "com.example.server_score"
+        applicationId "com.zbapps.server_score"
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 1
