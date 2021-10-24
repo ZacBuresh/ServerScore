@@ -27,9 +27,14 @@ class MainActivity : MainInterface, AppCompatActivity() {
         spinner.adapter = adapter
 
         bt_start.setOnClickListener {
-            val intent = Intent(this, ScoreActivity::class.java)
-            intent.putExtra("USERNAME", spinner.selectedItem.toString())
-            startActivity(intent)
+            if(spinner.selectedItem != null){
+                val intent = Intent(this, ScoreActivity::class.java)
+                intent.putExtra("USERNAME", spinner.selectedItem.toString())
+                startActivity(intent)
+            }
+            else{
+                Toast.makeText(this, "You must add a user", Toast.LENGTH_LONG).show()
+            }
         }
 
         fab_add.setOnClickListener {
